@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
+from langchain.vectorstores import Chroma
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain.document_loaders import PyPDFLoader
@@ -177,7 +177,7 @@ def create_knowledge_base():
         
         # Create embeddings and vector store
         embeddings = OpenAIEmbeddings()
-        vector_store = FAISS.from_texts(chunks, embeddings)
+        vector_store = Chroma.from_texts(chunks, embeddings)
         
         return vector_store
     except Exception as e:
